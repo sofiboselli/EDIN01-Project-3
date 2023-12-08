@@ -24,7 +24,8 @@ def calculateHamming(u,z):
 			hamm += 1
 	return hamm
 
-def calculatePStar(hamm, N):
+def calculatePStar(u,z,N):
+	hamm = calculateHamming(u,z)
 	return 1 - (hamm/N)
 
 def findKeyLFSR(C,N,stream):
@@ -35,7 +36,7 @@ def findKeyLFSR(C,N,stream):
 		while len(init) < L:
 			init.insert(0,0)
 		u = shiftRegister(C,N,init)
-		p_star.append(calculateHamming(u,stream))
+		p_star.append(calculatePStar(u,stream,N))
 	return p_star.index(max(p_star))
 
 def formatKey(L,key):
@@ -59,8 +60,7 @@ def checkKey(C1,C2,C3,keys,N,stream):
 			z.append(0)
 		if z[i] != stream[i]:
 			correct = False
-	print("Z: ", z)
-	print("STREAM: ",stream)
+			break
 	return correct, z
 
 
