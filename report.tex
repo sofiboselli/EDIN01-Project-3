@@ -115,9 +115,15 @@ Finally, key for the LFSR is the initial condition which yielded the higher corr
 
 \subsection{Exercise 2}
 
-The first LFSR is of length 13 which means it has $2^{13}$ possible initial conditions, the second LFSR of length 15 has $2^{15}$ possible inital conditions and lastly, the third LFSR of length 17 has $2^{17}$ possible initial conditions. This means that an exhaustive search over the keyspace would mean trying $2^{45}$ options which would take $T2^{45}$ seconds
+In both the correlation attack and the brute force attack the goal is to test all the possible initial values for the LSFRs by generating their related streams. Let's say we call testing one value by generating the corresponding stream and comparing it to the true stream \textbf{a trial}. \newline
 
-\todo[inline]{Not sure if this is what the exercise is about}
+In the correlation attack, we want to achieve $2^{13}+2^{15}+2^{17}$ trials as we use correlation to study LSFRs separately. Let's say this takes a time $T$.\newline
+
+In the brute force attack the $3$ LFSR are studied together which means we want to make up to $2^{13} \times 2^{15}\times 2^{17}$ trials. By doing a cross product we can conclude that it would take roughly $2,05 \times 10^8 \times T$.\newline
+
+In our case the correlation attack took $300 \text{ sec}$, we can therefore estimate that a brute force attack would have taken up to $1944 \text{ years}$. Not sure if we would still be around to see the results !
+
+\newpage
 
 \section{Appendix: Code}
 
